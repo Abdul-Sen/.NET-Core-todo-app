@@ -7,9 +7,9 @@ namespace Backend.Data.Models
 {
     public class TodoItem
     {
+        public int Id { get; set; }
         [Required]
         public string Name { set; get; }
-        public long Id { get; set; }
         [Required]
         public bool IsComplete { get; set; }
     }
