@@ -19,7 +19,7 @@ namespace Backend.Core.Todo
         {
             try
             {
-                _todoContext.MyItems.Add(item);
+                _todoContext.TodoItems.Add(item);
                 _todoContext.SaveChanges();
                 return true;
             }
@@ -39,8 +39,8 @@ namespace Backend.Core.Todo
         {
             try
             {
-               TodoItem foundItem = _todoContext.MyItems.Find(id);
-                _todoContext.MyItems.Remove(foundItem);
+               TodoItem foundItem = _todoContext.TodoItems.Find(id);
+                _todoContext.TodoItems.Remove(foundItem);
                 _todoContext.SaveChanges();
                 return true;
             }
@@ -58,18 +58,18 @@ namespace Backend.Core.Todo
 
         public async Task<List<TodoItem>> GetAllTodoItem()
         {
-            return await _todoContext.MyItems.ToListAsync();
+            return await _todoContext.TodoItems.ToListAsync();
         }
 
         public TodoItem GetTodoItem(long id)
         {
-           TodoItem item = _todoContext.MyItems.Find(id);
+           TodoItem item = _todoContext.TodoItems.Find(id);
             return item;
         }
 
         public bool UpdateTodoItem(TodoItem NewItem, long IdOldItem)
         {
-            TodoItem FoundItem = _todoContext.MyItems.Find(IdOldItem);
+            TodoItem FoundItem = _todoContext.TodoItems.Find(IdOldItem);
             FoundItem.IsComplete = NewItem.IsComplete;
             FoundItem.Name = NewItem.Name;
             _todoContext.SaveChanges();

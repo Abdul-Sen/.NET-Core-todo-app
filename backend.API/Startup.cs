@@ -28,7 +28,8 @@ namespace backend.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<TodoItemContext>(options => options.UseSqlServer("DefaultConnection"));
+            Console.WriteLine(Configuration.GetConnectionString("DefaultConnection"));
+           services.AddDbContext<TodoItemContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
            // services.AddDbContext<TodoItemContext>(opt => opt.UseInMemoryDatabase("TodoList")); // Creates a database called "TodoList"
             services.AddScoped<ITodoService, TodoService>();
             services.AddControllers();
